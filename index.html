@@ -323,6 +323,141 @@
             font-weight: 500;
         }
 
+        /* About */
+        .about {
+            padding: 100px 5%;
+            background: var(--light);
+        }
+
+        .about-tabs {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+
+        .tab-btn {
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            border: 2px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        .tab-btn.active, .tab-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            max-width: 1000px;
+            margin: 0 auto;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .about-chapter {
+            background: white;
+            border-radius: 24px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+        }
+
+        .about-chapter h3 {
+            font-size: 1.6rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid rgba(184,134,11,0.2);
+        }
+
+        .about-chapter p {
+            color: #444;
+            font-size: 1.05rem;
+            line-height: 2;
+            margin-bottom: 1.2rem;
+        }
+
+        .about-highlight {
+            background: linear-gradient(135deg, rgba(184,134,11,0.08), rgba(212,165,116,0.08));
+            border-left: 4px solid var(--primary);
+            border-radius: 0 12px 12px 0;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            font-style: italic;
+            color: var(--primary-dark);
+            font-size: 1.05rem;
+        }
+
+        .culture-item {
+            display: flex;
+            gap: 1.2rem;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            padding: 1.2rem;
+            background: var(--light);
+            border-radius: 12px;
+        }
+
+        .culture-num {
+            width: 36px;
+            height: 36px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+            font-size: 0.9rem;
+        }
+
+        .culture-item p {
+            margin: 0;
+            color: #444;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .values-box {
+            background: var(--dark);
+            color: white;
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .values-box h4 {
+            font-size: 1rem;
+            color: var(--accent);
+            margin-bottom: 0.8rem;
+            letter-spacing: 2px;
+        }
+
+        .values-box p {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: white;
+            margin: 0;
+            letter-spacing: 4px;
+        }
+
         /* Features */
         .features {
             padding: 100px 5%;
@@ -559,6 +694,7 @@
         </div>
         <nav>
             <a href="#home">首页</a>
+            <a href="#about">关于我们</a>
             <a href="#courses">课程</a>
             <a href="#features">特色</a>
             <a href="#contact">联系我们</a>
@@ -578,6 +714,55 @@
             </div>
         </div>
         <div class="hero-image"></div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="section-header">
+            <div class="subtitle">About Us</div>
+            <h2 class="serif">关于翔鱼学苑</h2>
+            <p>源自清华，扎根玉溪，伴随少年共同成长</p>
+        </div>
+        <div class="about-tabs">
+            <button class="tab-btn active" onclick="switchTab('intro')">第一章 · 学苑简介</button>
+            <button class="tab-btn" onclick="switchTab('culture')">第二章 · 学苑文化</button>
+        </div>
+
+        <div class="tab-content active" id="tab-intro">
+            <div class="about-chapter">
+                <h3>🏫 学苑简介</h3>
+                <p>翔鱼学苑为<strong>北京翔鱼教育咨询有限公司</strong>品牌名，总部位于清华大学家属区，负责清华大学教工子女的美育培养。学苑建立以来，优秀的教研团队开发了系统科学的美育培养教学体系，学苑在2022年8月在玉溪设立第一家直营校区，并将这种科学的教学体系引入玉溪，期望伴随玉溪少年共同成长。</p>
+                <div class="about-highlight">
+                    "让下一代优雅的生活" —— 翔鱼学苑使命
+                </div>
+                <p>翔鱼学苑致力于为<strong>3-18岁</strong>的孩子"培养独立自信的人格，塑造阳光坚强的特质"，打造一站式美育教育综合体。学苑以<strong>"有爱，鼓励，引导，创新"</strong>为教育理念，以"伴随学生终身成长，成就团队幸福快乐"为愿景。</p>
+                <p>翔鱼学苑秉承<strong>生活即教育、社会即学校</strong>的教育思想，致力于建设成为学生喜欢、家长放心、学校拓展、员工幸福、社会需要的未来学校，为孩子打造除家、校以外的第三类学玩空间。</p>
+                <p>翔鱼学苑至今已开设美术、书法、舞蹈、音乐、口才、钢琴、乐高编程、高效阅读等<strong>十余种课程</strong>，划分出三大区域：艺术区、科技区、人文生活区。教研团队还在不断打磨拓展新的精品课程，包括学习习惯培养、美育游学、家长课堂、心理素质锻炼、传统文化传播，力求满足青少年全类别素质能力提升需求。</p>
+            </div>
+        </div>
+
+        <div class="tab-content" id="tab-culture">
+            <div class="about-chapter">
+                <h3>🐟 品牌缘起</h3>
+                <p>翔鱼，源自于庄子《逍遥游》——<em>"北冥有鱼，其名为鲲，化而为鸟，其名为鹏。"</em></p>
+                <p>鲲为鱼，翔鱼为鹏，<strong>鹏程万里，意为前程远大</strong>。我们期望经过综合素质教育，培养孩子前程远大。翔鱼教育以童蒙养正为引导，以综合素质教育为手段，致力于提升学生学习思维、文化内涵、艺术审美的高端素质教育品牌。</p>
+                <div class="culture-item">
+                    <div class="culture-num">1</div>
+                    <p><strong>翔鱼</strong>，出自毛泽东《沁园春·长沙》：<em>"鱼翔浅底"</em>，意思是指有雄心壮志的人需要在广阔的领域才能展示出才能。我们的综合素质教育恰恰为孩子提供了广阔的领域，让孩子能展现才能。</p>
+                </div>
+                <div class="culture-item">
+                    <div class="culture-num">2</div>
+                    <p>翔鱼学苑中的<strong>"学苑"</strong>是指，翔鱼校区里的课程非常丰富，为校园教育作补充、作深化，致力于打造校外校，让孩子的教育无死角。</p>
+                </div>
+                <div class="culture-item">
+                    <div class="culture-num">3</div>
+                    <p>英文 <strong>Wegrow</strong> 的理念，强调合作的重要性，孩子们可以自由自在地从周围小伙伴身上学习知识，互动式学习能够有意识地培养21世纪儿童的修养和思维能力。</p>
+                </div>
+                <div class="values-box">
+                    <h4>核心价值观</h4>
+                    <p>人文日新 · 创新担当 · 达人成己</p>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section class="courses" id="courses">
@@ -748,6 +933,13 @@
     </footer>
 
     <script>
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById('tab-' + tab).classList.add('active');
+            event.target.classList.add('active');
+        }
+
         function submitForm(e) {
             e.preventDefault();
             alert('感谢您的预约！我们会尽快与您联系。');
