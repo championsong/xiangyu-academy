@@ -2,959 +2,175 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>翔鱼学苑 | 艺术培训中心</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #B8860B;
-            --primary-dark: #8B6914;
-            --secondary: #2C5530;
-            --accent: #D4A574;
-            --light: #FAF8F5;
-            --dark: #1A1A1A;
-            --gray: #666;
-        }
-
-        body {
-            font-family: 'Noto Sans SC', sans-serif;
-            background: var(--light);
-            color: var(--dark);
-            line-height: 1.6;
-        }
-
-        .serif {
-            font-family: 'Noto Serif SC', serif;
-        }
-
-        /* Header */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(255,255,255,0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 1rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
-        }
-
-        .logo-text {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--dark);
-        }
-
-        .logo-text span {
-            color: var(--primary);
-        }
-
-        nav {
-            display: flex;
-            gap: 2rem;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 500;
-            transition: color 0.3s;
-            position: relative;
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            transition: width 0.3s;
-        }
-
-        nav a:hover {
-            color: var(--primary);
-        }
-
-        nav a:hover::after {
-            width: 100%;
-        }
-
-        /* Hero */
-        .hero {
-            min-height: 100vh;
-            background: linear-gradient(135deg, #FAF8F5 0%, #F5F0E8 50%, #EDE6D8 100%);
-            padding: 120px 5% 80px;
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(184,134,11,0.1) 0%, transparent 70%);
-            border-radius: 50%;
-        }
-
-        .hero-content {
-            max-width: 700px;
-            z-index: 1;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            background: var(--primary);
-            color: white;
-            padding: 0.5rem 1.2rem;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
-            color: var(--dark);
-        }
-
-        .hero h1 span {
-            color: var(--primary);
-        }
-
-        .hero-desc {
-            font-size: 1.2rem;
-            color: var(--gray);
-            margin-bottom: 2rem;
-            max-width: 500px;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s;
-            cursor: pointer;
-            border: none;
-            font-size: 1rem;
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(184,134,11,0.3);
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--primary);
-            color: var(--primary);
-        }
-
-        .btn-outline:hover {
-            background: var(--primary);
-            color: white;
-        }
-
-        .hero-image {
-            position: absolute;
-            right: 5%;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 450px;
-            height: 450px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-            animation: morph 8s ease-in-out infinite;
-        }
-
-        @keyframes morph {
-            0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
-            50% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; }
-        }
-
-        /* Courses */
-        .courses {
-            padding: 100px 5%;
-            background: white;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-header h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .section-header p {
-            color: var(--gray);
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .section-header .subtitle {
-            color: var(--primary);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.9rem;
-        }
-
-        .courses-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .course-card {
-            background: var(--light);
-            border-radius: 20px;
-            padding: 2.5rem;
-            transition: all 0.3s;
-            border: 1px solid rgba(0,0,0,0.05);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .course-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: var(--primary);
-            transform: scaleY(0);
-            transition: transform 0.3s;
-        }
-
-        .course-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-        }
-
-        .course-card:hover::before {
-            transform: scaleY(1);
-        }
-
-        .course-icon {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .course-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 0.8rem;
-        }
-
-        .course-card p {
-            color: var(--gray);
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
-        }
-
-        .course-tag {
-            display: inline-block;
-            background: rgba(184,134,11,0.1);
-            color: var(--primary);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-
-        /* About */
-        .about {
-            padding: 100px 5%;
-            background: var(--light);
-        }
-
-        .about-tabs {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-bottom: 3rem;
-        }
-
-        .tab-btn {
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            border: 2px solid var(--primary);
-            background: transparent;
-            color: var(--primary);
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-family: inherit;
-        }
-
-        .tab-btn.active, .tab-btn:hover {
-            background: var(--primary);
-            color: white;
-        }
-
-        .tab-content {
-            display: none;
-            max-width: 1000px;
-            margin: 0 auto;
-            animation: fadeIn 0.4s ease;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .about-chapter {
-            background: white;
-            border-radius: 24px;
-            padding: 3rem;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.06);
-        }
-
-        .about-chapter h3 {
-            font-size: 1.6rem;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px solid rgba(184,134,11,0.2);
-        }
-
-        .about-chapter p {
-            color: #444;
-            font-size: 1.05rem;
-            line-height: 2;
-            margin-bottom: 1.2rem;
-        }
-
-        .about-highlight {
-            background: linear-gradient(135deg, rgba(184,134,11,0.08), rgba(212,165,116,0.08));
-            border-left: 4px solid var(--primary);
-            border-radius: 0 12px 12px 0;
-            padding: 1.2rem 1.5rem;
-            margin: 1.5rem 0;
-            font-style: italic;
-            color: var(--primary-dark);
-            font-size: 1.05rem;
-        }
-
-        .culture-item {
-            display: flex;
-            gap: 1.2rem;
-            align-items: flex-start;
-            margin-bottom: 1.5rem;
-            padding: 1.2rem;
-            background: var(--light);
-            border-radius: 12px;
-        }
-
-        .culture-num {
-            width: 36px;
-            height: 36px;
-            background: var(--primary);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            flex-shrink: 0;
-            font-size: 0.9rem;
-        }
-
-        .culture-item p {
-            margin: 0;
-            color: #444;
-            font-size: 1rem;
-            line-height: 1.8;
-        }
-
-        .values-box {
-            background: var(--dark);
-            color: white;
-            border-radius: 16px;
-            padding: 2rem;
-            text-align: center;
-            margin-top: 2rem;
-        }
-
-        .values-box h4 {
-            font-size: 1rem;
-            color: var(--accent);
-            margin-bottom: 0.8rem;
-            letter-spacing: 2px;
-        }
-
-        .values-box p {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: white;
-            margin: 0;
-            letter-spacing: 4px;
-        }
-
-        /* Features */
-        .features {
-            padding: 100px 5%;
-            background: var(--dark);
-            color: white;
-        }
-
-        .features .section-header h2,
-        .features .section-header p {
-            color: white;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .feature-item {
-            text-align: center;
-        }
-
-        .feature-icon {
-            width: 80px;
-            height: 80px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            margin: 0 auto 1.5rem;
-        }
-
-        .feature-item h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.8rem;
-        }
-
-        .feature-item p {
-            color: rgba(255,255,255,0.7);
-            font-size: 0.95rem;
-        }
-
-        /* Contact */
-        .contact {
-            padding: 100px 5%;
-            background: linear-gradient(135deg, var(--light) 0%, #F5F0E8 100%);
-        }
-
-        .contact-wrapper {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .contact-info h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .contact-info p {
-            color: var(--gray);
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .contact-item-icon {
-            width: 50px;
-            height: 50px;
-            background: var(--primary);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-        }
-
-        .contact-form {
-            background: white;
-            padding: 3rem;
-            border-radius: 24px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid #eee;
-            border-radius: 12px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-            font-family: inherit;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--dark);
-            color: white;
-            padding: 60px 5% 30px;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-brand .logo {
-            margin-bottom: 1rem;
-        }
-
-        .footer-brand p {
-            color: rgba(255,255,255,0.6);
-            font-size: 0.95rem;
-        }
-
-        .footer-col h4 {
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .footer-col a {
-            display: block;
-            color: rgba(255,255,255,0.6);
-            text-decoration: none;
-            margin-bottom: 0.8rem;
-            transition: color 0.3s;
-        }
-
-        .footer-col a:hover {
-            color: var(--primary);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: rgba(255,255,255,0.5);
-            font-size: 0.9rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 900px) {
-            .hero {
-                flex-direction: column;
-                text-align: center;
-                padding-top: 150px;
-            }
-
-            .hero-content {
-                max-width: 100%;
-            }
-
-            .hero-image {
-                position: relative;
-                width: 300px;
-                height: 300px;
-                margin: 3rem auto 0;
-                right: auto;
-                top: auto;
-                transform: none;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .contact-wrapper {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            nav {
-                display: none;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .courses-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
+        :root{--primary:#1a365d;--primary-light:#2c5282;--accent:#B8860B;--accent-light:#D4A574;--light:#FAFCFF;--dark:#1A202C;--gray:#4A5568;--gray-light:#718096;--white:#FFFFFF;--shadow-sm:0 1px 3px rgba(0,0,0,0.08);--shadow-md:0 4px 20px rgba(0,0,0,0.1);--shadow-lg:0 10px 40px rgba(0,0,0,0.12);--radius:12px;--transition:all 0.3s cubic-bezier(0.4,0,0.2,1);}
+        *{margin:0;padding:0;box-sizing:border-box;}
+        html{scroll-behavior:smooth;font-size:16px;}
+        body{font-family:'Noto Sans SC',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--white);color:var(--dark);line-height:1.7;-webkit-font-smoothing:antialiased;}
+        .serif{font-family:'Noto Serif SC',serif;}
+        img{max-width:100%;height:auto;}
+        a{text-decoration:none;color:inherit;}
+        .container{max-width:1200px;margin:0 auto;padding:0 24px;}
+        header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,0.97);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,0.05);transition:var(--transition);}
+        header.scrolled{box-shadow:var(--shadow-md);}
+        .header-inner{display:flex;justify-content:space-between;align-items:center;height:72px;}
+        .logo{display:flex;align-items:center;gap:12px;}
+        .logo-icon{width:42px;height:42px;background:linear-gradient(135deg,var(--primary),var(--primary-light));border-radius:10px;display:flex;align-items:center;justify-content:center;color:white;font-size:1.2rem;}
+        .logo-text{font-size:1.35rem;font-weight:700;color:var(--dark);letter-spacing:-0.5px;}
+        .logo-text span{color:var(--accent);}
+        .nav-menu{display:flex;gap:32px;list-style:none;}
+        .nav-menu a{font-size:0.95rem;font-weight:500;color:var(--gray);padding:8px 0;position:relative;transition:var(--transition);}
+        .nav-menu a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--accent);transition:var(--transition);}
+        .nav-menu a:hover{color:var(--primary);}
+        .nav-menu a:hover::after{width:100%;}
+        .nav-cta{background:var(--accent);color:white!important;padding:10px 24px!important;border-radius:50px;font-weight:600!important;}
+        .nav-cta::after{display:none!important;}
+        .nav-cta:hover{background:var(--primary)!important;}
+        .menu-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;z-index:1001;}
+        .menu-toggle span{width:24px;height:2px;background:var(--dark);transition:var(--transition);}
+        .menu-toggle.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+        .menu-toggle.active span:nth-child(2){opacity:0;}
+        .menu-toggle.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+        .hero{min-height:100vh;display:flex;align-items:center;background:linear-gradient(135deg,var(--white) 0%,#EDF2F7 100%);padding:100px 0 60px;position:relative;overflow:hidden;}
+        .hero::before{content:'';position:absolute;top:0;right:0;width:55%;height:100%;background:linear-gradient(135deg,var(--primary) 0%,var(--primary-light) 100%);clip-path:polygon(15% 0,100% 0,100% 100%,0% 100%);}
+        .hero-content{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:1;}
+        .hero-text{padding-right:40px;}
+        .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(184,134,11,0.1);color:var(--accent);padding:8px 16px;border-radius:50px;font-size:0.85rem;font-weight:600;margin-bottom:24px;}
+        .hero h1{font-size:clamp(2.2rem,4vw,3.2rem);font-weight:700;line-height:1.2;margin-bottom:20px;color:var(--dark);}
+        .hero h1 .accent{color:var(--accent);}
+        .hero-desc{font-size:1.1rem;color:var(--gray);margin-bottom:32px;line-height:1.8;}
+        .hero-buttons{display:flex;gap:16px;flex-wrap:wrap;}
+        .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:50px;font-weight:600;font-size:0.95rem;cursor:pointer;border:none;transition:var(--transition);}
+        .btn-primary{background:var(--accent);color:white;}
+        .btn-primary:hover{background:var(--primary);transform:translateY(-2px);box-shadow:0 10px 30px rgba(26,54,93,0.3);}
+        .btn-outline{background:transparent;border:2px solid var(--primary);color:var(--primary);}
+        .btn-outline:hover{background:var(--primary);color:white;}
+        .hero-visual{display:flex;justify-content:center;align-items:center;}
+        .hero-image-wrap{width:100%;max-width:480px;aspect-ratio:4/3;background:linear-gradient(135deg,var(--primary) 0%,var(--accent) 100%);border-radius:24px;display:flex;align-items:center;justify-content:center;color:white;font-size:4rem;box-shadow:var(--shadow-lg);position:relative;overflow:hidden;}
+        .section{padding:100px 0;}
+        .section-dark{background:var(--primary);color:white;}
+        .section-header{text-align:center;margin-bottom:64px;}
+        .section-label{display:inline-block;font-size:0.8rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:16px;}
+        .section-title{font-size:clamp(1.8rem,3vw,2.5rem);font-weight:700;margin-bottom:16px;color:var(--dark);}
+        .section-dark .section-title{color:white;}
+        .section-subtitle{font-size:1.1rem;color:var(--gray-light);max-width:600px;margin:0 auto;}
+        .section-dark .section-subtitle{color:rgba(255,255,255,0.7);}
+        .about-tabs{display:flex;justify-content:center;gap:12px;margin-bottom:48px;flex-wrap:wrap;}
+        .tab-btn{padding:12px 28px;border:2px solid var(--primary);background:transparent;color:var(--primary);border-radius:50px;font-size:0.95rem;font-weight:600;cursor:pointer;transition:var(--transition);font-family:inherit;}
+        .tab-btn.active,.tab-btn:hover{background:var(--primary);color:white;}
+        .tab-content{display:none;animation:fadeUp 0.5s ease;}
+        .tab-content.active{display:block;}
+        @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+        .about-card{background:white;border-radius:20px;padding:48px;box-shadow:var(--shadow-md);max-width:900px;margin:0 auto;}
+        .about-card h3{font-size:1.5rem;color:var(--primary);margin-bottom:24px;padding-bottom:16px;border-bottom:2px solid rgba(184,134,11,0.2);}
+        .about-card p{color:var(--gray);font-size:1rem;line-height:2;margin-bottom:16px;}
+        .about-highlight{background:linear-gradient(135deg,rgba(184,134,11,0.08),rgba(212,165,116,0.08));border-left:4px solid var(--accent);padding:20px 24px;border-radius:0 12px 12px 0;margin:24px 0;font-style:italic;color:var(--accent);font-weight:500;}
+        .culture-list{display:flex;flex-direction:column;gap:16px;margin-top:24px;}
+        .culture-item{display:flex;gap:16px;align-items:flex-start;padding:20px;background:var(--light);border-radius:12px;}
+        .culture-num{width:36px;height:36px;background:var(--primary);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0;font-size:0.9rem;}
+        .culture-item p{margin:0;font-size:0.95rem;}
+        .values-bar{background:var(--primary);color:white;border-radius:16px;padding:32px;text-align:center;margin-top:32px;}
+        .values-bar h4{font-size:0.9rem;color:var(--accent-light);letter-spacing:2px;margin-bottom:12px;}
+        .values-bar p{font-size:1.4rem;font-weight:700;letter-spacing:4px;color:white;margin:0;}
+        .mv-section{background:linear-gradient(135deg,var(--accent) 0%,#9A7B4F 100%);padding:60px 0;color:white;}
+        .mv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;}
+        .mv-item{text-align:center;padding:24px;}
+        .mv-item h4{font-size:0.85rem;letter-spacing:2px;opacity:0.85;margin-bottom:12px;}
+        .mv-item p{font-size:1.15rem;font-weight:600;line-height:1.5;margin:0;}
+        .adv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+        .adv-card{background:white;border-radius:var(--radius);padding:32px;position:relative;overflow:hidden;transition:var(--transition);border:1px solid rgba(0,0,0,0.05);}
+        .adv-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg);}
+        .adv-num{position:absolute;top:-20px;right:-20px;width:80px;height:80px;background:linear-gradient(135deg,var(--primary),var(--primary-light));border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:1.8rem;font-weight:700;opacity:0.15;}
+        .adv-card h4{font-size:1.1rem;color:var(--primary);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+        .adv-card p{color:var(--gray);font-size:0.92rem;line-height:1.7;margin:0;}
+        .honors-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+        .honor-item{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:var(--radius);padding:20px;text-align:center;font-size:0.9rem;transition:var(--transition);}
+        .honor-item:hover{background:rgba(184,134,11,0.25);border-color:var(--accent);transform:scale(1.02);}
+        .courses-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;}
+        .course-card{background:white;border-radius:var(--radius);padding:32px;text-align:center;transition:var(--transition);border:1px solid rgba(0,0,0,0.05);position:relative;}
+        .course-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg);border-color:var(--accent);}
+        .course-icon{width:72px;height:72px;background:linear-gradient(135deg,var(--primary),var(--primary-light));border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 20px;}
+        .course-card h3{font-size:1.25rem;margin-bottom:12px;color:var(--dark);}
+        .course-card p{color:var(--gray);font-size:0.9rem;margin-bottom:16px;line-height:1.7;}
+        .course-tag{display:inline-block;background:rgba(184,134,11,0.1);color:var(--accent);padding:6px 16px;border-radius:50px;font-size:0.8rem;font-weight:600;}
+        .features-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;}
+        .feature-item{text-align:center;}
+        .feature-icon{width:80px;height:80px;background:rgba(255,255,255,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 20px;}
+        .feature-item h3{font-size:1.15rem;margin-bottom:8px;}
+        .feature-item p{color:rgba(255,255,255,0.65);font-size:0.9rem;}
+        .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+        .contact-info h2{font-size:2.2rem;margin-bottom:16px;}
+        .contact-info>p{color:var(--gray);font-size:1.05rem;margin-bottom:32px;}
+        .contact-list{display:flex;flex-direction:column;gap:20px;}
+        .contact-item{display:flex;align-items:center;gap:16px;}
+        .contact-icon{width:52px;height:52px;background:linear-gradient(135deg,var(--primary),var(--primary-light));border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;}
+        .contact-item strong{display:block;font-size:0.85rem;color:var(--gray-light);margin-bottom:2px;}
+        .contact-item span{font-size:1rem;color:var(--dark);}
+        .contact-form{background:white;padding:40px;border-radius:20px;box-shadow:var(--shadow-lg);}
+        .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+        .form-group{margin-bottom:20px;}
+        .form-group.full{grid-column:span 2;}
+        .form-group label{display:block;font-size:0.9rem;font-weight:500;margin-bottom:8px;color:var(--dark);}
+        .form-group input,.form-group textarea{width:100%;padding:14px 18px;border:2px solid #E2E8F0;border-radius:10px;font-size:1rem;font-family:inherit;transition:var(--transition);}
+        .form-group input:focus,.form-group textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(184,134,11,0.1);}
+        .form-group textarea{resize:vertical;min-height:100px;}
+        .btn-submit{width:100%;padding:16px;background:var(--accent);color:white;border:none;border-radius:50px;font-size:1rem;font-weight:600;cursor:pointer;transition:var(--transition);}
+        .btn-submit:hover{background:var(--primary);transform:translateY(-2px);}
+        footer{background:var(--dark);color:white;padding:80px 0 30px;}
+        .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px;}
+        .footer-brand p{color:rgba(255,255,255,0.6);font-size:0.95rem;margin-top:16px;line-height:1.7;}
+        .footer-col h4{font-size:1rem;margin-bottom:20px;color:white;}
+        .footer-col a{display:block;color:rgba(255,255,255,0.6);font-size:0.9rem;margin-bottom:12px;transition:var(--transition);}
+        .footer-col a:hover{color:var(--accent);}
+        .footer-bottom{text-align:center;padding-top:30px;border-top:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.5);font-size:0.85rem;}
+        @media(max-width:1024px){
+            .hero::before{display:none;}
+            .hero-content{grid-template-columns:1fr;text-align:center;}
+            .hero-text{padding-right:0;}
+            .hero-buttons{justify-content:center;}
+            .hero-visual{order:-1;}
+            .hero-image-wrap{max-width:360px;}
+            .adv-grid,.features-grid{grid-template-columns:repeat(2,1fr);}
+            .honors-grid{grid-template-columns:repeat(3,1fr);}
+            .mv-grid{grid-template-columns:repeat(2,1fr);}
+            .footer-grid{grid-template-columns:repeat(2,1fr);}
+        }
+        @media(max-width:768px){
+            .nav-menu{position:fixed;top:72px;left:0;right:0;background:white;flex-direction:column;padding:24px;gap:16px;box-shadow:var(--shadow-md);transform:translateY(-100%);opacity:0;pointer-events:none;transition:var(--transition);}
+            .nav-menu.active{transform:translateY(0);opacity:1;pointer-events:all;}
+            .menu-toggle{display:flex;}
+            .section{padding:60px 0;}
+            .section-header{margin-bottom:40px;}
+            .contact-grid,.form-grid{grid-template-columns:1fr;}
+            .form-group.full{grid-column:span 1;}
+            .footer-grid{grid-template-columns:1fr;gap:32px;}
+            .adv-grid,.features-grid{grid-template-columns:1fr;}
+            .honors-grid{grid-template-columns:repeat(2,1fr);}
+            .mv-grid{grid-template-columns:1fr;}
+        }
+        @media(max-width:480px){
+            html{font-size:15px;}
+            .container{padding:0 16px;}
+            .hero{padding:90px 0 40px;}
+            .about-card{padding:28px;}
+            .hero-image-wrap{max-width:280px;}
+            .honors-grid{grid-template-columns:1fr;}
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <div class="logo-icon">🎓</div>
-            <div class="logo-text">翔鱼<span>学苑</span></div>
-        </div>
-        <nav>
-            <a href="#home">首页</a>
-            <a href="#about">关于我们</a>
-            <a href="#courses">课程</a>
-            <a href="#features">特色</a>
-            <a href="#contact">联系我们</a>
-        </nav>
-    </header>
-
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <div class="hero-badge">✨ 让孩子发现艺术之美</div>
-            <h1 class="serif">培养兴趣<br>启迪<span>智慧</span></h1>
-            <p class="hero-desc">
-                翔鱼学苑——一站式艺术教育综合体。涵盖书法、国画、美术、乐高、口才、声乐、钢琴七大课程，专注青少年艺术启蒙与特长培养。
-            </p>
-            <div class="hero-buttons">
-                <a href="#contact" class="btn btn-primary">立即预约试听</a>
-                <a href="#courses" class="btn btn-outline">查看课程</a>
-            </div>
-        </div>
-        <div class="hero-image"></div>
-    </section>
-
-    <section class="about" id="about">
-        <div class="section-header">
-            <div class="subtitle">About Us</div>
-            <h2 class="serif">关于翔鱼学苑</h2>
-            <p>源自清华，扎根玉溪，伴随少年共同成长</p>
-        </div>
-        <div class="about-tabs">
-            <button class="tab-btn active" onclick="switchTab('intro')">第一章 · 学苑简介</button>
-            <button class="tab-btn" onclick="switchTab('culture')">第二章 · 学苑文化</button>
-        </div>
-
-        <div class="tab-content active" id="tab-intro">
-            <div class="about-chapter">
-                <h3>🏫 学苑简介</h3>
-                <p>翔鱼学苑为<strong>北京翔鱼教育咨询有限公司</strong>品牌名，总部位于清华大学家属区，负责清华大学教工子女的美育培养。学苑建立以来，优秀的教研团队开发了系统科学的美育培养教学体系，学苑在2022年8月在玉溪设立第一家直营校区，并将这种科学的教学体系引入玉溪，期望伴随玉溪少年共同成长。</p>
-                <div class="about-highlight">
-                    "让下一代优雅的生活" —— 翔鱼学苑使命
-                </div>
-                <p>翔鱼学苑致力于为<strong>3-18岁</strong>的孩子"培养独立自信的人格，塑造阳光坚强的特质"，打造一站式美育教育综合体。学苑以<strong>"有爱，鼓励，引导，创新"</strong>为教育理念，以"伴随学生终身成长，成就团队幸福快乐"为愿景。</p>
-                <p>翔鱼学苑秉承<strong>生活即教育、社会即学校</strong>的教育思想，致力于建设成为学生喜欢、家长放心、学校拓展、员工幸福、社会需要的未来学校，为孩子打造除家、校以外的第三类学玩空间。</p>
-                <p>翔鱼学苑至今已开设美术、书法、舞蹈、音乐、口才、钢琴、乐高编程、高效阅读等<strong>十余种课程</strong>，划分出三大区域：艺术区、科技区、人文生活区。教研团队还在不断打磨拓展新的精品课程，包括学习习惯培养、美育游学、家长课堂、心理素质锻炼、传统文化传播，力求满足青少年全类别素质能力提升需求。</p>
-            </div>
-        </div>
-
-        <div class="tab-content" id="tab-culture">
-            <div class="about-chapter">
-                <h3>🐟 品牌缘起</h3>
-                <p>翔鱼，源自于庄子《逍遥游》——<em>"北冥有鱼，其名为鲲，化而为鸟，其名为鹏。"</em></p>
-                <p>鲲为鱼，翔鱼为鹏，<strong>鹏程万里，意为前程远大</strong>。我们期望经过综合素质教育，培养孩子前程远大。翔鱼教育以童蒙养正为引导，以综合素质教育为手段，致力于提升学生学习思维、文化内涵、艺术审美的高端素质教育品牌。</p>
-                <div class="culture-item">
-                    <div class="culture-num">1</div>
-                    <p><strong>翔鱼</strong>，出自毛泽东《沁园春·长沙》：<em>"鱼翔浅底"</em>，意思是指有雄心壮志的人需要在广阔的领域才能展示出才能。我们的综合素质教育恰恰为孩子提供了广阔的领域，让孩子能展现才能。</p>
-                </div>
-                <div class="culture-item">
-                    <div class="culture-num">2</div>
-                    <p>翔鱼学苑中的<strong>"学苑"</strong>是指，翔鱼校区里的课程非常丰富，为校园教育作补充、作深化，致力于打造校外校，让孩子的教育无死角。</p>
-                </div>
-                <div class="culture-item">
-                    <div class="culture-num">3</div>
-                    <p>英文 <strong>Wegrow</strong> 的理念，强调合作的重要性，孩子们可以自由自在地从周围小伙伴身上学习知识，互动式学习能够有意识地培养21世纪儿童的修养和思维能力。</p>
-                </div>
-                <div class="values-box">
-                    <h4>核心价值观</h4>
-                    <p>人文日新 · 创新担当 · 达人成己</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="courses" id="courses">
-        <div class="section-header">
-            <div class="subtitle">Our Courses</div>
-            <h2 class="serif">七大核心课程</h2>
-            <p>全方位艺术教育，挖掘每个孩子的独特天赋</p>
-        </div>
-        <div class="courses-grid">
-            <div class="course-card">
-                <div class="course-icon">✍️</div>
-                <h3 class="serif">书法</h3>
-                <p>软笔书法与硬笔书法结合，培养书写规范，传承中华传统文化底蕴。</p>
-                <span class="course-tag">5-15岁</span>
-            </div>
-            <div class="course-card">
-                <div class="course-icon">🎨</div>
-                <h3 class="serif">美术</h3>
-                <p>创意绘画、水粉、线描等多元化课程，激发孩子想象力和审美能力。</p>
-                <span class="course-tag">4-14岁</span>
-            </div>
-            <div class="course-card">
-                <div class="course-icon">🧱</div>
-                <h3>乐高</h3>
-                <p>积木搭建与机器人编程，锻炼逻辑思维和动手能力，激发创造力。</p>
-                <span class="course-tag">3-12岁</span>
-            </div>
-            <div class="course-card">
-                <div class="course-icon">🎤</div>
-                <h3>口才</h3>
-                <p>演讲、朗诵、主持三合一，培养表达自信，提升人际沟通能力。</p>
-                <span class="course-tag">5-16岁</span>
-            </div>
-            <div class="course-card">
-                <div class="course-icon">🖼️</div>
-                <h3 class="serif">国画</h3>
-                <p>写意花鸟、山水入门，感受传统笔墨魅力，培养艺术气质与修养。</p>
-                <span class="course-tag">6-16岁</span>
-            </div>
-            <div class="course-card">
-                <div class="course-icon">🎵</div>
-                <h3>声乐</h3>
-                <p>专业发声训练与歌曲演绎，培养音乐素养，发现天籁之声。</p>
-                <span class="course-tag">5-18岁</span>
-            </div>
-            <div class="course-card">
-                <div class="course-icon">🎹</div>
-                <h3>钢琴</h3>
-                <p>一对一专业钢琴教学，奠定扎实基本功，感悟音乐之美。</p>
-                <span class="course-tag">4-18岁</span>
-            </div>
-        </div>
-    </section>
-
-    <section class="features" id="features">
-        <div class="section-header">
-            <div class="subtitle">Why Choose Us</div>
-            <h2 class="serif">为什么选择翔鱼</h2>
-            <p>专业、专注、专心，只为给孩子最好的艺术教育</p>
-        </div>
-        <div class="features-grid">
-            <div class="feature-item">
-                <div class="feature-icon">👨‍🏫</div>
-                <h3>名师执教</h3>
-                <p>资深教师团队，均毕业于专业艺术院校，拥有丰富教学经验</p>
-            </div>
-            <div class="feature-item">
-                <div class="feature-icon">🏠</div>
-                <h3>环境优越</h3>
-                <p>宽敞明亮教室，专业艺术空间配置，为孩子创造良好学习氛围</p>
-            </div>
-            <div class="feature-item">
-                <div class="feature-icon">📚</div>
-                <h3>体系完善</h3>
-                <p>分龄分阶课程体系，循序渐进，让每个孩子都能学有所成</p>
-            </div>
-            <div class="feature-item">
-                <div class="feature-icon">🎯</div>
-                <h3>成果可见</h3>
-                <p>定期汇报演出、作品展示，让孩子收获自信与成长</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="contact" id="contact">
-        <div class="contact-wrapper">
-            <div class="contact-info">
-                <h2 class="serif">开启艺术之旅</h2>
-                <p>让孩子在艺术的氛围中发现自我，现在就预约免费试听课吧！</p>
-                <div class="contact-item">
-                    <div class="contact-item-icon">📍</div>
-                    <div>
-                        <strong>校区地址</strong>
-                        <div style="color: var(--gray);">示例：某某市某某区某某路123号</div>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-item-icon">📱</div>
-                    <div>
-                        <strong>咨询热线</strong>
-                        <div style="color: var(--gray);">400-XXX-XXXX</div>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-item-icon">🕐</div>
-                    <div>
-                        <strong>营业时间</strong>
-                        <div style="color: var(--gray);">周一至周五 9:00-20:00<br>周六日 8:30-18:00</div>
-                    </div>
-                </div>
-            </div>
-            <div class="contact-form">
-                <form onsubmit="submitForm(event)">
-                    <div class="form-group">
-                        <label>孩子姓名</label>
-                        <input type="text" placeholder="请输入孩子姓名" required>
-                    </div>
-                    <div class="form-group">
-                        <label>家长电话</label>
-                        <input type="tel" placeholder="请输入联系电话" required>
-                    </div>
-                    <div class="form-group">
-                        <label>孩子年龄</label>
-                        <input type="text" placeholder="请输入孩子年龄" required>
-                    </div>
-                    <div class="form-group">
-                        <label>感兴趣课程</label>
-                        <input type="text" placeholder="如：书法、钢琴、国画等">
-                    </div>
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">提交预约</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="footer-content">
-            <div class="footer-brand">
-                <div class="logo">
-                    <div class="logo-icon">🎓</div>
-                    <div class="logo-text">翔鱼<span>学苑</span></div>
-                </div>
-                <p>专注青少年艺术教育，<br>让孩子在艺术中成长</p>
-            </div>
-            <div class="footer-col">
-                <h4>课程</h4>
-                <a href="#">书法</a>
-                <a href="#">美术</a>
-                <a href="#">乐高</a>
-                <a href="#">口才</a>
-            </div>
-            <div class="footer-col">
-                <h4>课程</h4>
-                <a href="#">国画</a>
-                <a href="#">声乐</a>
-                <a href="#">钢琴</a>
-            </div>
-            <div class="footer-col">
-                <h4>联系我们</h4>
-                <a href="#">关于我们</a>
-                <a href="#">师资团队</a>
-                <a href="#">校区分布</a>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            © 2026 翔鱼学苑 版权所有 | 京ICP备XXXXXXXX号
-        </div>
-    </footer>
-
-    <script>
-        function switchTab(tab) {
-            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-            document.getElementById('tab-' + tab).classList.add('active');
-            event.target.classList.add('active');
-        }
-
-        function submitForm(e) {
-            e.preventDefault();
-            alert('感谢您的预约！我们会尽快与您联系。');
-        }
-
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+<header id="header"><div class="container header-inner"><div class="logo"><div class="logo-icon">🎓</div><div class="logo-text">翔鱼<span>学苑</span></div></div><nav><ul class="nav-menu" id="navMenu"><li><a href="#home">首页</a></li><li><a href="#about">关于我们</a></li><li><a href="#advantages">核心优势</a></li><li><a href="#courses">课程</a></li><li><a href="#contact" class="nav-cta">预约试听</a></li></ul></nav><div class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></div></div></header>
+<section class="hero" id="home"><div class="container hero-content"><div class="hero-text"><div class="hero-badge"><span>✨</span> 专注3-18岁美育培养</div><h1>让下一代<br><span class="accent">优雅的生活</span></h1><p class="hero-desc">翔鱼学苑——源自清华，扎根玉溪。以系统科学的美育教学体系，培养独立自信的人格，塑造阳光坚强的特质，成就孩子的美好未来。</p><div class="hero-buttons"><a href="#contact" class="btn btn-primary">立即预约试听</a><a href="#courses" class="btn btn-outline">了解课程</a></div></div><div class="hero-visual"><div class="hero-image-wrap"><span>🎨</span></div></div></div></section>
+<section class="section" id="about"><div class="container"><div class="section-header"><div class="section-label">About Us</div><h2 class="section-title">关于翔鱼学苑</h2><p class="section-subtitle">源自清华，扎根玉溪，伴随少年共同成长</p></div><div class="about-tabs"><button class="tab-btn active" onclick="switchTab('intro')">学苑简介</button><button class="tab-btn" onclick="switchTab('culture')">学苑文化</button></div><div class="tab-content active" id="tab-intro"><div class="about-card"><h3>🏫 学苑简介</h3><p>翔鱼学苑为<strong>北京翔鱼教育咨询有限公司</strong>品牌名，总部位于清华大学家属区，负责清华大学教工子女的美育培养。学苑建立以来，优秀的教研团队开发了系统科学的美育培养教学体系。</p><p>学苑在2022年8月在玉溪设立第一家直营校区，并将这种科学的教学体系引入玉溪，期望伴随玉溪少年共同成长。</p><div class="about-highlight">"让下一代优雅的生活" —— 翔鱼学苑使命</div><p>翔鱼学苑致力于为<strong>3-18岁</strong>的孩子"培养独立自信的人格，塑造阳光坚强的特质"，打造一站式美育教育综合体。学苑以<strong>"有爱，鼓励，引导，创新"</strong>为教育理念，以"伴随学生终身成长，成就团队幸福快乐"为愿景。</p><p>翔鱼学苑秉承<strong>生活即教育、社会即学校</strong>的教育思想，至今已开设美术、书法、舞蹈，音乐、口才、钢琴、乐高编程等<strong>十余种课程</strong>，划分出艺术区、科技区、人文生活区三大领域，力求满足青少年全类别素质能力提升需求。</p></div></div><div class="tab-content" id="tab-culture"><div class="about-card"><h3>🐟 品牌缘起</h3><p>翔鱼，源自于庄子《逍遥游》——<em>"北冥有鱼，其名为鲲，化而为鸟，其名为鹏。"</em></p><p>鲲为鱼，翔鱼为鹏，<strong>鹏程万里，意为前程远大</strong>。我们期望经过综合素质教育，培养孩子前程远大。</p><div class="culture-list"><div class="culture-item"><div class="culture-num">1</div><p><strong>翔鱼</strong>，出自毛泽东《沁园春·长沙》：<em>"鱼翔浅底"</em>，有雄心壮志的人需要在广阔的领域才能展示才能。我们的综合素质教育恰恰为孩子提供了广阔的领域。</p></div><div class="culture-item"><div class="culture-num">2</div><p>翔鱼学苑中的<strong>"学苑"</strong>是指，课程非常丰富，为校园教育作补充、作深化，致力于打造校外校，让孩子的教育无死角。</p></div><div class="culture-item"><div class="culture-num">3</div><p>英文 <strong>Wegrow</strong> 的理念，强调合作的重要性，孩子们可以自由自在地从周围小伙伴身上学习知识，互动式学习培养21世纪儿童的修养和思维能力。</p></div></div><div class="values-bar"><h4>核心价值观</h4><p>人文日新 · 创新担当 · 达人成己</p></div></div></div></div></section>
+<section class="mv-section"><div class="container"><div class="mv-grid"><div class="mv-item"><h4>使命</h4><p>让下一代优雅的生活</p></div><div class="mv-item"><h4>愿景</h4><p>伴随学生终身成长<br>成就团队幸福快乐</p></div><div class="mv-item"><h4>教育理念</h4><p>有爱 · 鼓励<br>引导 · 创新</p></div><div class="mv-item"><h4>教育目标</h4><p>培养独立自信人格<br>塑造阳光坚强特质</p></div></div></div></section>
+<section class="section" id="advantages"><div class="container"><div class="section-header"><div class="section-label">Our Advantages</div><h2 class="section-title">九大核心优势</h2><p class="section-subtitle">专业、专注、专心，只为给孩子最好的艺术教育</p></div><div class="adv-grid"><div class="adv-card"><div class="adv-num">01</div><h4>🎯 以教育为目标，以教学为手段</h4><p>培养孩子独立自信的人格，塑造阳光坚强的特质。通过有爱心、鼓励式、引导式教学，提高孩子的创新思维能力。</p></div><div class="adv-card"><div class="adv-num">02</div><h4>📚 课程体系系统科学，教学内容专业</h4><p>总部位于清华家属区，依托清华、北大、中传、北舞等名校教师，研发系统科学的教学体系。</p></div><div class="adv-card"><div class="adv-num">03</div><h4>📊 阶段式测评，教学升级制度完善</h4><p>模块式定制级教学管理，针对性辅导。作为多学科定点考级机构，根据学习进度组织考级，赋予孩子未来竞争力。</p></div><div class="adv-card"><div class="adv-num">04</div><h4>👨‍🏫 双师课堂，带班督导管理</h4><p>专业课教师+艺术规划师督导制度，时时关注学生状态，建立家校互联机制，让家长省心放心。</p></div><div class="adv-card"><div class="adv-num">05</div><h4>📝 注重学习习惯培养</h4><p>聘请清华优秀学子开展学习习惯及学习方法培养素养课，帮助孩子开发智力、提升学习效率。</p></div><div class="adv-card"><div class="adv-num">06</div><h4>🎨 课程门类广，三大领域10门科目</h4><p>涵盖艺术、科技、人文三大领域。美育规划师挖掘孩子天赋，给予专业化的特长培养建议和艺考生涯规划。</p></div><div class="adv-card"><div class="adv-num">07</div><h4>🌟 师资专业优质稳定，师训体系完善</h4><p>所有老师本科以上学历，专业科班出身。常态化师训，玉溪教师与北京教师教学交流，践行人文日新价值观。</p></div><div class="adv-card"><div class="adv-num">08</div><h4>🏫 艺术校园，环境舒适一流</h4><p>广州美院操刀设计，书法、美术、乐高、器乐、舞蹈等教学设施齐全，安全环保材质，打造全国一流水准。</p></div><div class="adv-card"><div class="adv-num">09</div><h4>🎉 活动丰富，服务管理有温度</h4><p>定期组织文化活动、游学研学、演艺比赛。课后服务管理有温度的关怀，让每个孩子得到家一般的呵护。</p></div></div></div></section>
+<section class="section section-dark" id="honors"><div class="container"><div class="section-header"><div class="section-label">Qualifications</div><h2 class="section-title">资质荣誉</h2><p class="section-subtitle">权威认证，品质保证</p></div><div class="honors-grid"><div class="honor-item">🏆 2021北京市海淀区十佳校外培训机构</div><div class="honor-item">🏆 北京市家校一体化建设优秀示范基地</div><div class="honor-item">🏫 清华大学附属小学教学合作单位</div><div class="honor-item">🏫 北京林业大学附属小学教学合作单位</div><div class="honor-item">🏫 中国农业大学附属小学教学合作单位</div><div class="honor-item">🎓 清华大学社会实践基地</div><div class="honor-item">🎓 中国音乐学院社会实践基地</div><div class="honor-item">🎓 中国人民大学社会实践基地</div><div class="honor-item">🎓 北京师范大学社会实践基地</div><div class="honor-item">🎓 清华美院/计算机系教学指导</div><div class="honor-item">🎵 文旅部艺术考级定点机构</div><div class="honor-item">📚 首都师范大学艺术与美育研究院教学实践基地</div></div></div></section>
+<section class="section" id="courses"><div class="container"><div class="section-header"><div class="section-label">Our Courses</div><h2 class="section-title">七大核心课程</h2><p class="section-subtitle">全方位艺术教育，挖掘每个孩子的独特天赋</p></div><div class="courses-grid"><div class="course-card"><div class="course-icon">✍️</div><h3 class="serif">书法</h3><p>软笔书法与硬笔书法结合，培养书写规范，传承中华传统文化底蕴。</p><span class="course-tag">5-15岁</span></div><div class="course-card"><div class="course-icon">🎨</div><h3 class="serif">美术</h3><p>创意绘画、水粉、线描等多元化课程，激发孩子想象力和审美能力。</p><span class="course-tag">4-14岁</span></div><div class="course-card"><div class="course-icon">🧱</div><h3>乐高编程</h3><p>积木搭建与机器人编程，锻炼逻辑思维和动手能力，激发创造力。</p><span class="course-tag">3-12岁</span></div><div class="course-card"><div class="course-icon">🎤</div><h3>口才</h3><p>演讲、朗诵、主持三合一，培养表达自信，提升人际沟通能力。</p><span class="course-tag">5-16岁</span></div><div class="course-card"><div class="course-icon">🖼️</div><h3 class="serif">国画</h3><p>写意花鸟、山水入门，感受传统笔墨魅力，培养艺术气质与修养。</p><span class="course-tag">6-16岁</span></div><div class="course-card"><div class="course-icon">🎵</div><h3>声乐</h3><p>专业发声训练与歌曲演绎，培养音乐素养，发现天籁之声。</p><span class="course-tag">5-18岁</span></div><div class="course-card"><div class="course-icon">🎹</div><h3>钢琴</h3><p>一对一专业钢琴教学，奠定扎实基本功，感悟音乐之美。</p><span class="course-tag">4-18岁</span></div></div></div></section>
+<section class="section section-dark"><div class="container"><div class="section-header"><div class="section-label">Why Choose Us</div><h2 class="section-title">为什么选择翔鱼</h2><p class="section-subtitle">专业、专注、专心，只为给孩子最好的艺术教育</p></div><div class="features-grid"><div class="feature-item"><div class="feature-icon">👨‍🏫</div><h3>名师执教</h3><p>资深教师团队，均毕业于专业艺术院校，拥有丰富教学经验</p></div><div class="feature-item"><div class="feature-icon">🏠</div><h3>环境优越</h3><p>宽敞明亮教室，专业艺术空间配置，为孩子创造良好学习氛围</p></div><div class="feature-item"><div class="feature-icon">📚</div><h3>体系完善</h3><p>分龄分阶课程体系，循序渐进，让每个孩子都能学有所成</p></div><div class="feature-item"><div class="feature-icon">🎯</div><h3>成果可见</h3><p>定期汇报演出，作品展示，让孩子收获自信与成长</p></div></div></div></section>
+<section class="section" id="contact"><div class="container"><div class="contact-grid"><div class="contact-info"><h2 class="section-title">开启艺术之旅</h2><p>让孩子在艺术的氛围中发现自我，现在就预约免费试听课吧！</p><div class="contact-list"><div class="contact-item"><div class="contact-icon">📍</div><div><strong>校区地址</strong><span>云南省玉溪市红塔区</span></div></div><div class="contact-item"><div class="contact-icon">📱</div><div><strong>咨询热线</strong><span>400-XXX-XXXX</span></div></div><div class="contact-item"><div class="contact-icon">🕐</div><div><strong>营业时间</strong><span>周一至周五 9:00-20:00<br>周六日 8:30-18:00</span></div></div></div></div><div class="contact-form"><form onsubmit="submitForm(event)"><div class="form-grid"><div class="form-group"><label>孩子姓名</label><input type="text" placeholder="请输入孩子姓名" required></div><div class="form-group"><label>家长电话</label><input type="tel" placeholder="请输入联系电话" required></div><div class="form-group"><label>孩子年龄</label><input type="text" placeholder="如：8岁" required></div><div class="form-group"><label>感兴趣课程</label><input type="text" placeholder="如：书法、钢琴"></div><div class="form-group full"><label>留言（选填）</label><textarea placeholder="请输入留言内容"></textarea></div></div><button type="submit" class="btn-submit">提交预约</button></form></div></div></div></section>
+<footer><div class="container"><div class="footer-grid"><div class="footer-brand"><div class="logo"><div class="logo-icon">🎓</div><div class="logo-text">翔鱼<span>学苑</span></div></div><p>专注青少年艺术教育，让孩子在艺术中成长。<br>源自清华，扎根玉溪，伴随少年共同成长。</p></div><div class="footer-col"><h4>课程</h4><a href="#courses">书法</a><a href="#courses">美术</a><a href="#courses">乐高编程</a><a href="#courses">口才</a></div><div class="footer-col"><h4>课程</h4><a href="#courses">国画</a><a href="#courses">声乐</a><a href="#courses">钢琴</a></div><div class="footer-col"><h4>关于</h4><a href="#about">关于我们</a><a href="#advantages">核心优势</a><a href="#honors">资质荣誉</a><a href="#contact">联系我们</a></div></div><div class="footer-bottom">© 2026 翔鱼学苑 版权所有 | 京ICP备XXXXXXXX号</div></div></footer><script>document.getElementById('menuToggle').addEventListener('click',function(){document.getElementById('menuToggle').classList.toggle('active');document.getElementById('navMenu').classList.toggle('active');});document.querySelectorAll('.nav-menu a').forEach(function(link){link.addEventListener('click',function(){document.getElementById('menuToggle').classList.remove('active');document.getElementById('navMenu').classList.remove('active');});});window.addEventListener('scroll',function(){document.getElementById('header').classList.toggle('scrolled',window.scrollY>50);});function switchTab(tab){document.querySelectorAll('.tab-content').forEach(function(el){el.classList.remove('active');});document.querySelectorAll('.tab-btn').forEach(function(el){el.classList.remove('active');});document.getElementById('tab-'+tab).classList.add('active');event.target.classList.add('active');}function submitForm(e){e.preventDefault();alert('感谢您的预约！我们会尽快与您联系。');}document.querySelectorAll('a[href^="#"]').forEach(function(anchor){anchor.addEventListener('click',function(e){e.preventDefault();var target=document.querySelector(this.getAttribute('href'));if(target){var top=target.getBoundingClientRect().top+window.pageYOffset-72;window.scrollTo({top:top,behavior:'smooth'});}});});</script></body></html>
